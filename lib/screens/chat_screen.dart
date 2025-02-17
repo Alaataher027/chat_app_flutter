@@ -103,7 +103,14 @@ class ChatScreen extends StatelessWidget {
             ),
           );
         } else {
-          return Text("Loading..");
+          return Scaffold(
+            body: Center(
+              child: Text(
+                "Loading..",
+                style: TextStyle(color: Colors.blue),
+              ),
+            ),
+          );
         }
       },
     );
