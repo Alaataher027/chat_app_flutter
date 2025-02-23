@@ -18,8 +18,20 @@ class LoginCubit extends Cubit<LoginState> {
         password: password,
       );
       emit(LoginSuccess());
-    } on Exception catch (e) {
-      emit(LoginFailure());
+    } on FirebaseAuthException catch (e) {
+      print("FirebaseAuthException: ${e.code}"); // Debugging Log
+
+      if (e.code == 'user-not-found') {
+        emit(LoginFailure(errorMessage: 'User not found'));
+      } else if (e.code == 'wrong-password') {
+        print("wrong passssssss");
+        emit(LoginFailure(errorMessage: 'Wrong password'));
+      } else {
+        print("⚠️ Unhandled Firebase error: ${e.code} - ${e.message}");
+        emit(LoginFailure(errorMessage: 'Authentication failed: ${e.message}'));
+      }
+    } catch (e) {
+      emit(LoginFailure(errorMessage: 'An error occurred'));
     }
   }
 }
