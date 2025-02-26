@@ -1,4 +1,5 @@
 import 'package:chat_app_flutter/screens/chat_screen.dart';
+import 'package:chat_app_flutter/screens/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app_flutter/screens/cubits/login_cubit/login_cubit.dart';
 import 'package:chat_app_flutter/screens/login_screen.dart';
 import 'package:chat_app_flutter/screens/register_screen.dart';
@@ -22,8 +23,11 @@ class ScholarChat extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(create: (context) => RegisterCubit())
+      ],
       child: MaterialApp(
         routes: {
           LoginScreen.id: (context) => LoginScreen(),
