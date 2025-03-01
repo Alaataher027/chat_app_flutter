@@ -1,8 +1,6 @@
 import 'package:chat_app_flutter/constants.dart';
-import 'package:chat_app_flutter/models/message_model.dart';
 import 'package:chat_app_flutter/screens/cubits/chat_cubit/chat_cubit.dart';
 import 'package:chat_app_flutter/widgets/chat_bubble.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

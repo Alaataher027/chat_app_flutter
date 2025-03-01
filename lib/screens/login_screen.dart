@@ -1,8 +1,8 @@
 import 'package:chat_app_flutter/constants.dart';
 import 'package:chat_app_flutter/helper/showSnackBar.dart';
+import 'package:chat_app_flutter/screens/blocs/auth_bloc/auth_bloc.dart';
 import 'package:chat_app_flutter/screens/chat_screen.dart';
 import 'package:chat_app_flutter/screens/cubits/chat_cubit/chat_cubit.dart';
-import 'package:chat_app_flutter/screens/cubits/login_cubit/login_cubit.dart';
 import 'package:chat_app_flutter/screens/register_screen.dart';
 import 'package:chat_app_flutter/widgets/button_white_widget.dart';
 import 'package:chat_app_flutter/widgets/custom_text_field.dart';
@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LoginLoading) {
           isLoading = true;
@@ -106,10 +106,10 @@ class LoginScreen extends StatelessWidget {
                   CustomButtonWhite(
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        BlocProvider.of<LoginCubit>(context).loginUser(
+                        BlocProvider.of<AuthBloc>(context).add(LoginEvent(
                           email: email!,
                           password: password!,
-                        );
+                        ));
                       } else {}
                     },
                     title: "LOGIN",

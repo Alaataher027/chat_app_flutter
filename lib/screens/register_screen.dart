@@ -1,6 +1,6 @@
 import 'package:chat_app_flutter/constants.dart';
 import 'package:chat_app_flutter/helper/showSnackBar.dart';
-import 'package:chat_app_flutter/screens/cubits/register_cubit/register_cubit.dart';
+import 'package:chat_app_flutter/screens/cubits/auth_cubit/auth_cubit.dart';
 import 'package:chat_app_flutter/screens/login_screen.dart';
 import 'package:chat_app_flutter/widgets/button_white_widget.dart';
 import 'package:chat_app_flutter/widgets/custom_text_field.dart';
@@ -21,7 +21,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterCubit, RegisterState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         // TODO: implement listener
         if (state is RegisterLoading) {
@@ -102,7 +102,7 @@ class RegisterScreen extends StatelessWidget {
                     CustomButtonWhite(
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<RegisterCubit>(context).registerUser(
+                          BlocProvider.of<AuthCubit>(context).registerUser(
                             email: email!,
                             password: password!,
                           );
